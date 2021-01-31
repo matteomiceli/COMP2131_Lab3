@@ -20,16 +20,19 @@ async function getRandomUser() {
   addData(newUser);
 }
 
-console.log(data);
-
 function addData(obj) {
   data.push(obj);
   updateDOM();
 }
 
-function doubleMny (array) {
-  
+function doubleMny () {
+  data.map((person) => {
+    person.money = person.money * 2;
+    updateDOM();
+  })
 }
+
+//console.log(doubleMny(data));
 
 function updateDOM(providedData = data) {
   // Clearing the main element
@@ -48,4 +51,4 @@ function formatMoney(number) {
 
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
-doubleBtn.addEventListener('click', doubleMny(data));
+doubleBtn.addEventListener('click', doubleMny);
