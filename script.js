@@ -29,8 +29,32 @@ function doubleMny () {
   data.map((person) => {
     person.money = person.money * 2;
     updateDOM();
-  })
+  });
 }
+
+function sortByRiches () {
+  data.sort((a, b) => b.money - a.money);
+  updateDOM();
+}
+
+function showMillionaires() {
+  data = data.filter((person) => person.money > 1000000);
+  updateDOM();
+}
+
+function calculateWealth() {
+  let sum = data.reduce((acc, val) => {
+    return acc.money + val.money;
+  })
+  updateDOM();
+  console.log(sum)
+  const element = document.createElement('div');
+    element.classList.add('total');
+    element.innerHTML = `<h3>Total Wealth: ${sum}</h3> `;
+    main.appendChild(element);
+}
+
+
 
 //console.log(doubleMny(data));
 
@@ -52,3 +76,6 @@ function formatMoney(number) {
 // Event listeners
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMny);
+sortBtn.addEventListener('click', sortByRiches);
+showMillionairesBtn.addEventListener('click', showMillionaires);
+calcBtn.addEventListener('click', calculateWealth);
